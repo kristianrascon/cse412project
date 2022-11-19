@@ -27,6 +27,29 @@
     object-fit: fill;
 }
 
+//main_content styles
+
+.main .main_container .main_content .search-container{
+  width: 600px;
+  height: 600px;
+  margin: 0 auto;
+}
+.main .main_container .main_content input[type=text]{
+  width: 500px;
+  padding: 6px;
+  font-size: 17px;
+  border: none;
+}
+.main .main_container .main_content #search{
+  vertical-align: middle;
+  padding: 6px 10px;
+  height: auto;
+  max-width: 50px;
+  border: none;
+ 
+}
+
+
 
 //navbar styles
 .navbar{
@@ -96,21 +119,41 @@
     color: #fff;
   }
   //hover styles
+  #logo:hover{
+    transform: scale(0.75);
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  #back:hover{
+    transform: scale(0.75);
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
   #selection>img:hover{
     transform: scale(0.75);
+    cursor: pointer;
+    transition: all 0.3s ease;
   }
 
   #customSelection>img:hover{
     transform: scale(0.75);
+    cursor: pointer;
+    transition: all 0.3s ease;
   }
   
   .button:hover{
     background: #4837ff;
+    cursor: pointer;
     transition: all 0.3s ease;
   }
   
   .navbar_links:hover{
     color: #fff;
+    cursor: pointer;
     transition: all 0.3s ease;
   }
- 
+  .main .main_container .main_content #search:hover{
+    transform: scale(0.75);
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
