@@ -1,4 +1,5 @@
 @import "globals";
+
 //selection styles
 #selection {
     width: 600px;
@@ -27,27 +28,55 @@
     object-fit: fill;
 }
 
-//main_content styles
 
-.main .main_container .main_content .search-container{
-  width: 600px;
-  height: 600px;
+//Search
+.search-container{
+  width: 610px;
+  height: 100px;
   margin: 0 auto;
+  float: center;
 }
-.main .main_container .main_content input[type=text]{
-  width: 500px;
+ #searchbar{
+  width: 600px;
   padding: 6px;
   font-size: 17px;
   border: none;
 }
-.main .main_container .main_content #search{
-  vertical-align: middle;
-  padding: 6px 10px;
-  height: auto;
-  max-width: 50px;
-  border: none;
+
+
+//PlayerCards
+ .player-cards{
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1 fr));
+  gap: .5rem;
+  margin-top: 1rem;
+  max-width: 600px;
+  margin: 0 auto;
+
+}
+ .card{
+  border: 1px solid black;
+  background-color: darkslategray;
+  padding: .5rem;
+  display: flex;
+  float: center;
+ }
+
+.card .text-container>.header{
+  margin-top: 1rem;
+  text-indent: 20px;
+  font-size: 1.5rem;
  
 }
+.card .text-container>.body{
+  font-size: 1rem;
+  text-indent: 20px;
+  color: whitesmoke;
+}
+.hide{
+  display: none
+}
+
 
 
 
@@ -104,20 +133,6 @@
     width: 100%;
   }
   
-  .button{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-decoration: none;
-    padding: 10px 20px;
-    height: 100%;
-    width: 100%;
-    border: none;
-    outline: none;
-    border-radius: 4px;
-    background: #202020;
-    color: #fff;
-  }
   //hover styles
   #logo:hover{
     transform: scale(0.75);
