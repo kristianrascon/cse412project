@@ -141,7 +141,7 @@ class Player{
   var numberofsuspensiongames;
   var numberoftrade;
 
-  const playerMap = new Map();  //Key = firstname + lastname, Value = playerData
+  const playerMap = new Map();  //Key = firstname + lastname + team_name + team  + position, Value = playerData
   const injuryMap = new Map();  //Key = injury, Value = length
   const retirementSet = new Set(); 
   const suspensionMap = new Map();  //Key = suspension, Value = suspensiongames
@@ -244,7 +244,8 @@ class Player{
         );
 
         //set data into maps
-        playerMap.set(newPlayer.firstname + ' ' + newPlayer.lastname, newPlayer);
+        let playerKey = (newPlayer.firstname  + newPlayer.lastname + newPlayer.team_city  + newPlayer.team_name + newPlayer.position).replace(/\s/g, '');
+        playerMap.set(playerKey, newPlayer); 
         //check for valid input
         if(injuryTemp.length>1){
           injuryMap.set(injuryTemp, injurylengthTemp);
@@ -263,6 +264,7 @@ class Player{
         }
        
     }
+    console.log(localStorage.getItem('articleTypeSelection'));
    playerGeneration();
   });
 
@@ -296,7 +298,7 @@ class Player{
         img.style.maxWidth = '150px';
         profile.appendChild(img);
         header.textContent = player.firstname + ' ' + player.lastname;
-        body.textContent = player.team_city + ' ' + player.team_name + ', ' + player.position;
+        body.textContent = ' ' + player.team_city + ' ' + player.team_name + ', ' + player.position;
         playerCardContainer.append(card); 
         return {playerid: player.playerid, firstname: player.firstname, lastname: player.lastname, team_name: player.team_name, team_city: player.team_city, position: player.position, element: card}
     });
@@ -304,6 +306,11 @@ class Player{
   
   //Player Selection
   $('.player-cards').click(function(event) {
-    playerSelection = $(event.target);
-    console.log(playerSelection);
+    playerSelection = $(event.target)[0].outerText;
+    playerSelection = playerSelection.replace(',', ''); //get into same format as key for playerMap
+    playerSelection = playerSelection.replace(/\s/g, '');
+    if(playerMap.has(playerSelection)){
+        playerSelection = playerMap.get(playerSelection);
+        localStorage.setItem("playerSelection", playerSelection);   //send to local storage to persist through pages
+    }
 });
