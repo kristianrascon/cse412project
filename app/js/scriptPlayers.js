@@ -248,23 +248,31 @@ class Player{
         playerMap.set(playerKey, newPlayer); 
         //check for valid input
         if(injuryTemp.length>1){
-          injuryMap.set(injuryTemp, injurylengthTemp);
+          injuryMap.set(injuryTemp, injurylengthTemp);  
         }
         if(retirementTemp.length>1){
-          retirementSet.add(retirementTemp);
+          retirementSet.add(retirementTemp);  
         }
         if(suspensionTemp.length>1){
-          suspensionMap.set(suspensionTemp, suspensiongamesTemp);
+          suspensionMap.set(suspensionTemp, suspensiongamesTemp); 
         }
         if(tradeTemp.length>1){
-          tradeSet.add(tradeTemp);
+          tradeSet.add(tradeTemp); 
         }
         if(teamsTemp.length>1){
           teamMap.set(newTeam.teams_name, newTeam);
         }
        
     }
-    console.log(localStorage.getItem('articleTypeSelection'));
+    //adding maps to local storage
+    localStorage.injuryMap = JSON.stringify(Array.from(injuryMap.entries()));
+    localStorage.teamMap = JSON.stringify(Array.from(teamMap.entries()));
+    localStorage.suspensionMap = JSON.stringify(Array.from(suspensionMap.entries()));
+    //adding sets to local storage
+    const retirement = Array.from(retirementSet);
+    localStorage.setItem('retirementSet', JSON.stringify(retirement));
+    const trades = Array.from(tradeSet);
+    localStorage.setItem('tradeSet', JSON.stringify(trades));
    playerGeneration();
   });
 
@@ -312,5 +320,6 @@ class Player{
     if(playerMap.has(playerSelection)){
         playerSelection = playerMap.get(playerSelection);
         localStorage.setItem("playerSelection", playerSelection);   //send to local storage to persist through pages
+        window.location.href = 'details.html';  //change screen to detail selection
     }
 });

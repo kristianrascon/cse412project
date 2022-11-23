@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Football Reporter Players</title>
+        <!--Styles for website-->
+        <link rel="stylesheet" href="dist/style.css">
+        <!--jQuery-->
+        <script src="app/js/jquery-3.6.1.js"></script>
+    </head>
+    <body>
+        <!--Menu Navigation Bar-->
+        <nav class="navbar">
+            <div class="navbar_container">
+            <img id="logo" src="images/footballreporterLogo.png" alt="Football Reporter"  class = "centerImage">
+                <ul class="navbar_menu">
+                    <img id = "back" src = "/images/back.png">
+                    
+                </ul>
+            </div>
+        </nav>
+        <!--Main Content-->
+        <h1 class="centerImage">Article Details</h1>
+        <div class="player-cards" data-detail-container></div>    <!--Reusing player-cards and card classes and template for article detail selection-->
+        
+
+
+        <template data-detail-template>
+            <div class="card" >
+                <div class="text-container">
+                    <div class="header" data-header></div>
+                </div>
+            </div>
+         </template>
+        
+        <script src="app/js/scriptDetails2.js"></script>
+    </body>
+</html>
