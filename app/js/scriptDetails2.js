@@ -31,7 +31,18 @@ $("#logo").click(function() {
     }
     //Note: retirement option is impossible on this screen
     if(articleSelection == 'trade'){
-
+        detailData = detailValues.map(detail=>{
+        const card = detailTemplate.content.cloneNode(true).children[0];
+        const profile = card.querySelector("[data-profile");
+        const header = card.querySelector("[data-header]");
+        var img = new Image();
+        img.src= detail.teams_photourl;
+        img.style.maxWidth = '50px';
+        img.style.maxWidth = '50px';
+        profile.appendChild(img);
+        header.textContent = detail.teams_city + ' ' + detail.teams_name;
+        detailContainer.append(card);
+    });
     }
     else{
         detailData = detailValues.map(detail=>{
@@ -44,10 +55,6 @@ $("#logo").click(function() {
   }
 
     //global vars to send to local storage upon selection
-    var szAppVersion = 'web1.0';
-    var szLeague = 'NFL';
-    var szCustomHeadline = '';
-    var szDetail = '';
     var szLength = '';
     var szTradedTo = '';
 
@@ -56,28 +63,18 @@ $("#logo").click(function() {
     detailSelection = $(event.target)[0].outerText;
     //detailSelection = detailSelection.replace(',', ''); //get into same format as key for the detail map
     //detailSelection = detailSelection.replace(/\s/g, '');
-    if(detailSelection.length < 40){    //to prevent when users click in between cards to select all data
+    if((articleSelection == 'suspension' && detailSelection.length <5) ||  ( articleSelection != 'suspension' && detailSelection.length < 40)){    //to prevent when users click in between cards to select all data
         if(articleSelection=='trade'){
             szTradedTo = detailSelection;
         }
         else{
-            szDetail = detailSelection;
+            szLength = detailSelection;
         }
         console.log(detailSelection); //TESTING
-        localStorage.setItem("szDetail", szDetail);   //send to local storage to persist through pages
         localStorage.setItem("szTradedTo", szTradedTo);   //send to local storage to persist through pages
-        localStorage.setItem("szCustomHeadline", szCustomHeadline); //send to local storage -> will always be blank until custom inputs are implemented
-        localStorage.setItem("szAppVersion", szAppVersion);
-        localStorage.setItem("szLeague", szLeague);
         localStorage.setItem("szLength", szLength); //will update on next page if applicable
-        if(articleSelection == 'retirement'){
-             //go to article generation page
-        }
-        else{
-           //go to second detail page
-           window.location.href = 'details2.html';  //change screen to detail selection
-        }
-        
+        //go to article generation page
+        //window.location.href = 'details2.html';  //change screen to detail selection
     }
 });
 
