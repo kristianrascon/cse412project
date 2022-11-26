@@ -7,7 +7,9 @@ $("#logo").click(function() {
     history.back();
   });
 
-  
+//heading generation
+const heading = document.getElementById('headingDetail');
+
  //Article detail selection generation
  var articleSelection;
  var detailSelection;
@@ -18,13 +20,16 @@ $("#logo").click(function() {
   function detailGeneration(){
     articleSelection = localStorage.getItem("articleTypeSelection");
     if(articleSelection == 'injury'){
+        heading.textContent = 'Injury Length';
         const injuries = new Map(JSON.parse(localStorage.injuryMap));
         detailValues = Array.from(injuries.values());
     }else if(articleSelection == 'suspension'){
+        heading.textContent = 'Suspension Length (Games)';
         const suspensions = new Map(JSON.parse(localStorage.suspensionMap));
         detailValues = Array.from(suspensions.values());
     }else {
         //trades
+        heading.textContent = 'Traded To';
         const teams = new Map(JSON.parse(localStorage.teamMap));
         detailValues = Array.from(teams.values()); //to capture team objects
 
@@ -46,10 +51,12 @@ $("#logo").click(function() {
     }
     else{
         detailData = detailValues.map(detail=>{
-        const card = detailTemplate.content.cloneNode(true).children[0];
-        const header = card.querySelector("[data-header]");
-        header.textContent = detail;
-        detailContainer.append(card); 
+            if(detail.length > 0){
+                const card = detailTemplate.content.cloneNode(true).children[0];
+                const header = card.querySelector("[data-header]");
+                header.textContent = detail;
+                detailContainer.append(card);
+            }
     });
     }
   }
@@ -70,11 +77,10 @@ $("#logo").click(function() {
         else{
             szLength = detailSelection;
         }
-        console.log(detailSelection); //TESTING
         localStorage.setItem("szTradedTo", szTradedTo);   //send to local storage to persist through pages
         localStorage.setItem("szLength", szLength); //will update on next page if applicable
-        //go to article generation page
-        //window.location.href = 'details2.html';  //change screen to detail selection
+        //go to share page
+        window.location.href = 'share.html';  //change screen to detail selection
     }
 });
 

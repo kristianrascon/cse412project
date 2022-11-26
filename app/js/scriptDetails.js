@@ -7,6 +7,10 @@ $("#logo").click(function() {
     history.back();
   });
   
+//heading generation
+const heading = document.getElementById('headingDetail');
+
+
  //Article detail selection generation
  var articleSelection;
  var detailSelection;
@@ -17,16 +21,20 @@ $("#logo").click(function() {
   function detailGeneration(){
     articleSelection = localStorage.getItem("articleTypeSelection");
     if(articleSelection == 'injury'){
+        heading.textContent = 'Injury';
         const injuries = new Map(JSON.parse(localStorage.injuryMap));
         detailValues = Array.from(injuries.keys());
     }else if(articleSelection == 'suspension'){
+        heading.textContent = 'Suspended For';
         const suspensions = new Map(JSON.parse(localStorage.suspensionMap));
         detailValues = Array.from(suspensions.keys());
     }else if(articleSelection == 'trade'){
+        heading.textContent = 'Traded For';
         const trades = JSON.parse(localStorage.getItem('tradeSet'));
         detailValues = Array.from(trades);
     }else{
         //retirement
+        heading.textContent = 'Retired Due To';
         const retirement = JSON.parse(localStorage.getItem('retirementSet'));
         detailValues = Array.from(retirement);
     }
@@ -62,6 +70,7 @@ $("#logo").click(function() {
         localStorage.setItem("szLength", szLength); //will update on next page if applicable
         if(articleSelection == 'retirement'){
              //go to article generation page
+             window.location.href = 'share.html';  //change screen share page
         }
         else{
            //go to second detail page
@@ -71,7 +80,7 @@ $("#logo").click(function() {
     }
 });
 
-  
+
   
 window.onload = function(){
     detailGeneration();

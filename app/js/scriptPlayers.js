@@ -319,6 +319,7 @@ class Player{
     playerSelection = playerSelection.replace(/\s/g, '');
     if(playerMap.has(playerSelection)){
         playerSelection = playerMap.get(playerSelection);
+        playerSelection = playerSelection.playerid;
         localStorage.setItem("playerSelection", playerSelection);   //send to local storage to persist through pages
         window.location.href = 'details.html';  //change screen to detail selection
     }
