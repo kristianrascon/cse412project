@@ -68,11 +68,14 @@ const heading = document.getElementById('headingDetail');
     //detailSelection
   $('.player-cards').click(function(event) {
     detailSelection = $(event.target)[0].outerText;
-    //detailSelection = detailSelection.replace(',', ''); //get into same format as key for the detail map
-    //detailSelection = detailSelection.replace(/\s/g, '');
     if((articleSelection == 'suspension' && detailSelection.length <5) ||  ( articleSelection != 'suspension' && detailSelection.length < 40)){    //to prevent when users click in between cards to select all data
         if(articleSelection=='trade'){
-            szTradedTo = detailSelection;
+            const teams = new Map(JSON.parse(localStorage.teamMap));
+            detailSelection = detailSelection.replace(/\s/g, ''); //remove whitespace
+            console.log(detailSelection);
+            szTradedTo = teams.get(detailSelection);
+            szTradedTo = szTradedTo.teams;
+
         }
         else{
             szLength = detailSelection;

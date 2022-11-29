@@ -146,7 +146,7 @@ class Player{
   const retirementSet = new Set(); 
   const suspensionMap = new Map();  //Key = suspension, Value = suspensiongames
   const tradeSet = new Set();
-  const teamMap = new Map();  //Key = teams_name, Value = teamData
+  const teamMap = new Map();  //Key = teams_city +teams_name, Value = teamData
   
   //Get JSON 
   $.getJSON('https://sportsreporterapp.com/cse412/app/initialize_1.php?league=NFL', function(playerData) {
@@ -260,7 +260,7 @@ class Player{
           tradeSet.add(tradeTemp); 
         }
         if(teamsTemp.length>1){
-          teamMap.set(newTeam.teams_name, newTeam);
+          teamMap.set(newTeam.teams_city+newTeam.teams_name, newTeam);
         }
        
     }
